@@ -10,8 +10,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 
 import tv.mineinthebox.mobProtect.configuration.config;
 
@@ -72,8 +75,16 @@ public class util {
 	
 	public static boolean checkMonster(Entity monster) {
 		if(config.disableProtectionForMonsters) {
-			if(monster instanceof Monster || !(monster instanceof Animals)) {
+			if(monster instanceof Monster) {
 				return true;
+			} else if(monster instanceof Animals) {
+				if(monster instanceof PigZombie) {
+					return true;
+				} else if(monster instanceof Slime) {
+					return true;
+				} else if(monster instanceof MagmaCube) {
+					return true;
+				}
 			}
 		}
 		return false;
