@@ -1,8 +1,10 @@
 package tv.mineinthebox.mobProtect;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.MetricsLite;
 
 import tv.mineinthebox.mobProtect.configuration.config;
 import tv.mineinthebox.mobProtect.events.handler;
@@ -17,6 +19,13 @@ public class mobProtect extends JavaPlugin {
 		config.createConfig();
 		getCommand("mobprotect").setExecutor(new command());
 		handler.launch();
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+			metrics.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		
 	}
 	
 	public void onDisable() {
