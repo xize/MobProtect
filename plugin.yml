@@ -1,0 +1,10 @@
+name: MobProtect
+version: ${project.version}
+description: protection for mobs
+author: xize
+authors: [] 
+website:
+
+main: tv.mineinthebox.mobprotect.MobProtect
+database: false
+depend: [WorldGuard]
