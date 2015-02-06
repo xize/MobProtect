@@ -29,12 +29,6 @@ public class MobProtect extends JavaPlugin {
 	}
 
 	public void onDisable() {
-		try {
-			manager.getWorldGuardManager().unregisterFlag(getFlags().getAllowHorseFlag());
-			manager.getWorldGuardManager().unregisterFlag(getFlags().getMobProtectFlag());
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 		log("has been disabled!", LogType.INFO);
 	}
 
