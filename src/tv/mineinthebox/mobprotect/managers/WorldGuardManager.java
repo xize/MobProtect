@@ -167,7 +167,19 @@ public class WorldGuardManager {
 	}
 
 	private void reloadWG() {
-		wg.getRegionContainer().reload();
+		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+		try {
+			Method m1 = wg.getClass().getMethod("getRegionContainer");
+			Object regionmgr = m1.invoke(wg);
+			Method m2 = regionmgr.getClass().getMethod("reload");
+			m2.invoke(regionmgr);
+			//wg.getRegionContainer().reload();
+		} catch(NoSuchMethodException e) {
+			pl.log("it seems you are using a old version of worldguard we will recommend to use 6.0 or higher!, reloading worldguard by command.", LogType.SEVERE);
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "wg reload");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
